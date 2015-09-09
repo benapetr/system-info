@@ -48,6 +48,7 @@ config_motd_source_path = None
 config_motd_position = "bottom"
 config_max_columns = 4
 config_max_width = 80
+config_uptime = True
 config_system_users = True
 config_system_processinfo = True
 config_system_load = True
@@ -76,6 +77,11 @@ screen = "System information as of " + datetime.datetime.now().strftime("%Y-%m-%
 information = []
 
 # System
+
+if (config_uptime):
+    with open('/proc/uptime', 'r') as f:
+        uptime_seconds = float(f.readline().split()[0])
+        information.append("Uptime: " + str(datetime.timedelta(seconds = uptime_seconds)))
 
 if (config_system_users == True):
     information.append("Users logged in: " + str(linecount(get_command("who"))))
