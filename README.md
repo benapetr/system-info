@@ -6,8 +6,6 @@ Example
 
 ```
 $ ssh machine
-Linux server 4.0.0-rc1-custom #1 SMP Wed Feb 25 00:51:31 CET 2015 x86_64
-
 The programs included with the Debian GNU/Linux system are free software;
 the exact distribution terms for each program are described in the
 individual files in /usr/share/doc/*/copyright.
@@ -15,7 +13,6 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 No mail.
-Last login: Wed Sep  9 10:34:07 2015 from 27.23.broadband16.iol.cz
 
 System information as of 2015-09-09 10:45:57:
 
