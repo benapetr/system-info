@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os, datetime
+import netifaces
 import argparse
 import subprocess
 import ConfigParser
@@ -52,6 +53,8 @@ config_system_processinfo = True
 config_system_load = True
 config_system_memory = True
 config_system_swap = True
+config_network = True
+config_network_ifignore = ['lo']
 config_github = True
 config_line_prefix = "  "
 
@@ -115,6 +118,12 @@ if (config_system_memory == True and free_mem_info is not None):
 if (config_system_swap == True and free_swap_info is not None):
     information.append("Free swap: " + str(free_swap_info) + "%")
 
+if (config_network == True):
+    for interface in netifaces.interfaces():
+        if (interface in config_network_ifignore):
+            continue
+        information.append("IP of " + interface + ": " + netifaces.ifaddresses(interface)[netifaces.AF_INET][0]['addr'])
+
 current_line = ""
 items = 0
 while (len(information) > 0):
@@ -123,7 +132,7 @@ while (len(information) > 0):
         del information[0]
         continue
     if (len(information) > 1):
-        screen += config_line_prefix + '{0:<25} {1:<25}'.format(information[0], information[1]) + "\n";
+        screen += config_line_prefix + '{0:<36} {1:<36}'.format(information[0], information[1]) + "\n";
         del information[0]
         del information[0]
     else:
